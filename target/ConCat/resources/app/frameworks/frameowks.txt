@@ -1,5 +1,0 @@
-﻿Angularjs 
-Angular ui router
-Bootstrap 
-Jquery
-Angular-busy v2.0.0
