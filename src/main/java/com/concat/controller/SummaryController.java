@@ -1,19 +1,23 @@
 package com.concat.controller;
 
-import com.concat.util.SummaryUtil;
+import java.io.File;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.concat.model.Summary;
 import com.concat.service.SummaryService;
-
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
+import com.concat.util.SummaryUtil;
 
 @Controller
 public class SummaryController {
@@ -33,6 +37,15 @@ public class SummaryController {
         SummaryUtil s = new SummaryUtil();
 
         return s.summarize(text);//"summary "+userIdentity+" - "+originalText;
+	}
+	
+	@RequestMapping(value = "/summarizeFile", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public @ResponseBody Set<String> summarizeFile(@RequestBody File file) {
+        System.out.println("summaryService" + file);
+
+        SummaryUtil s = new SummaryUtil();
+
+        return s.summarize(file);//"summary "+userIdentity+" - "+originalText;
 	}
 	
 	@RequestMapping(value = "/summaries", method = RequestMethod.GET)

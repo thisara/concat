@@ -60,6 +60,19 @@ public class SummaryUtil {
 			summaryPoints.add(sl.getsrSentence());
 		}
 	}
+	
+	public void separateSentense(File fp) {	
+		SentenseUtil sentense=new SentenseUtil(fp);
+		sentense.separateSentense(sentenseList);	
+		summary.append("NO OF SENTENSE :"+sentenseList.size() +"\n\n");		
+		scnt=sentenseList.size();
+		for(int i=0;i<sentenseList.size();i++)
+		 {	  
+			Sentense sl= sentenseList.get(i);  	 
+			summary.append("\n " + (i+1) +":  " + sl.getRawSentense());
+			summaryPoints.add(sl.getsrSentence());
+		 }		
+	 }
 
 	public double difPos(String str1, String str2) {
 		int s1 = str1.length();
@@ -253,6 +266,7 @@ public class SummaryUtil {
 		return str1;
 	}
 
+	//Summarize text
 	public Set<String> summarize(String s) {
 
 		separateSentense(s);
@@ -270,6 +284,24 @@ public class SummaryUtil {
 		return summaryPoints;
 	}
 
+	//Summarize text on a text file
+	public Set<String> summarize(File file) {
+
+		separateSentense(file);
+		removeStopWords();
+		uniqueWords();
+		stemming();
+		significant();
+		weight();
+		String str = ranking();
+		System.out.println(str);
+		
+		summary.append("SUMMARY \n\n" ); 
+		summary.append(str);
+		
+		return summaryPoints;
+	}
+	
 	public static void main(String str[]) {
 		
 		SummaryUtil sm = new SummaryUtil();

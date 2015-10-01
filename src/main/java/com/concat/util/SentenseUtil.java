@@ -1,4 +1,7 @@
 package com.concat.util;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.AbstractList;
 
 /**
@@ -15,6 +18,18 @@ public class SentenseUtil {
 		doc = doc.replaceAll("\r\n", " ");
 	}
 
+	public SentenseUtil(File fp) {     
+	    int sz; byte bt[];  
+	    try { 			            
+	    FileInputStream fis=new FileInputStream(fp);
+	    sz=(int)fp.length();	
+	    bt=new byte[sz];
+	    fis.read(bt);            
+	    this.doc=new String(bt);    	
+	    } 
+	   catch(IOException ex){   System.out.println(ex);}
+	 }
+	
 	public AbstractList<Sentense> separateSentense(AbstractList<Sentense> sentenseList) {
 		int fs1 = 0, fs2 = 0;
 		int nx = 0;
