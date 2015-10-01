@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
  *
  */
 
-public class Summary {
+public class Summary implements Comparable<Summary>{
 
 	@Id	
 	private int id;
@@ -55,5 +55,10 @@ public class Summary {
 	@Override
 	public String toString(){
 		return "id="+id+", summary="+summary+", originalText="+originalText+", userIdentity="+userIdentity;
+	}
+
+	@Override
+	public int compareTo(Summary o) {		
+		return (this.id<o.getId())?-1:(this.id==o.getId() ? 0 : 1);
 	}
 }
