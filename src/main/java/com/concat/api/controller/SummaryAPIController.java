@@ -1,5 +1,7 @@
 package com.concat.api.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,7 @@ public class SummaryAPIController {
 	}
 	
 	@RequestMapping(value = "/concat/text/summary", method = RequestMethod.POST)
-	public @ResponseBody String summarizeText(@RequestParam("userIdentity") String userIdentity,@RequestParam("originalText") String originalText) {
+	public @ResponseBody Set<String> summarizeText(@RequestParam("userIdentity") String userIdentity,@RequestParam("originalText") String originalText) {
 		
 		SummaryUtil s = new SummaryUtil();
 		

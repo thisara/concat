@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.util.Enumeration;
 import java.util.Set;
 
@@ -16,16 +17,18 @@ import java.util.Set;
  *
  */
 public class SummaryUtil {
-
+	
+	Set<String> summaryPoints;
 	StringBuffer summary;
-	ArrayList sentenseList;
-	Hashtable tokenMap;
+	ArrayList<Sentense> sentenseList;
+	Hashtable<String,Token> tokenMap;
 	double scnt;
 
 	public SummaryUtil() {
-		sentenseList = new ArrayList();
-		tokenMap = new Hashtable();
-		summary = new StringBuffer();
+		sentenseList = new ArrayList<Sentense>();
+		summaryPoints = new TreeSet<String>();
+		tokenMap = new Hashtable<String,Token>();
+		summary = new StringBuffer();		
 	}
 
 	public void removeStopWords() {
@@ -33,14 +36,15 @@ public class SummaryUtil {
 		StopWord stopWord = new StopWord();
 		SpecialCharacter specialCharacter = new SpecialCharacter();
 		for (int i = 0; i < sentenseList.size(); i++) {
-			Sentense sentense = (Sentense) sentenseList.get(i);
+			Sentense sentense = sentenseList.get(i);
 			sentense.setsrSentence(specialCharacter.remove(sentense.getRawSentense()));
 			sentense.setsrSentence(stopWord.remove(sentense.getsrSentence()));
 		}
 		summary.append("NO OF SENTENSE :"+sentenseList.size() +"\n\n");
 		for (int i = 0; i < sentenseList.size(); i++) {
-			Sentense sl = (Sentense) sentenseList.get(i);
+			Sentense sl = sentenseList.get(i);
 			summary.append("\n" + (i+1) +":  "+ sl.getsrSentence());
+			summaryPoints.add(sl.getsrSentence());
 		}
 
 	}
@@ -51,8 +55,9 @@ public class SummaryUtil {
 		summary.append("NO OF SENTENSE :"+sentenseList.size() +"\n\n");
 		scnt = sentenseList.size();
 		for (int i = 0; i < sentenseList.size(); i++) {
-			Sentense sl = (Sentense) sentenseList.get(i);
+			Sentense sl = sentenseList.get(i);
 			summary.append("\n " + (i+1) +":  " + sl.getRawSentense());
+			summaryPoints.add(sl.getsrSentence());
 		}
 	}
 
@@ -79,20 +84,20 @@ public class SummaryUtil {
 	}
 
 	private void upword(String tok, int sp, int wp) {
-		Token wl = (Token) tokenMap.remove(tok);
+		Token wl = tokenMap.remove(tok);
 		wl.incrementCount(sp + 1, wp);
 		tokenMap.put(tok, wl);
 	}
 
 	private void delword(Object tok) {
-		Token wl = (Token) tokenMap.remove(tok);
+		Token wl = tokenMap.remove(tok);
 		if (wl.getCount() > 3)
-			tokenMap.put(tok, wl);
+			tokenMap.put((String)tok, wl);
 	}
 
 	private void setwight(Object tok) {
 		double wg = 0.0;
-		Token wl = (Token) tokenMap.get(tok);
+		Token wl =  tokenMap.get(tok);
 		double tf = wl.getCount();
 		double df = wl.sentenseCount();
 		wg = tf * Math.log10(scnt / df);
@@ -101,7 +106,7 @@ public class SummaryUtil {
 
 	public void uniqueWords() {
 		for (int i = 0; i < sentenseList.size(); i++) {
-			Sentense sentense = (Sentense) sentenseList.get(i);
+			Sentense sentense = sentenseList.get(i);
 			String srSentense = sentense.getsrSentence();
 			int wc = 0;
 			StringTokenizer stk = new StringTokenizer(srSentense, " ");
@@ -117,9 +122,9 @@ public class SummaryUtil {
 		}
 
 		summary.append("No of unique words:" +tokenMap.size() + "\n");
-		Enumeration key = tokenMap.keys();
+		Enumeration<String> key = tokenMap.keys();
 		while (key.hasMoreElements()) {
-			Token wl = (Token) tokenMap.get(key.nextElement());
+			Token wl =  tokenMap.get(key.nextElement());
 			
 			summary.append("\n" +wl.getWord() + ":  " + wl.getCount() );		    
 		}
@@ -131,15 +136,15 @@ public class SummaryUtil {
 			//System.out.print("return:");
 			return;
 		}
-		Token wl1 = (Token) tokenMap.remove(w1);
-		Token wl2 = (Token) tokenMap.remove(w2);
+		Token wl1 =  tokenMap.remove(w1);
+		Token wl2 =  tokenMap.remove(w2);
 
-		ArrayList wp = wl2.getWordPosList();
-		ArrayList sp = wl2.getSentensePos();
+		ArrayList<String> wp = wl2.getWordPosList();
+		ArrayList<String> sp = wl2.getSentensePos();
 
 		for (int i = 0; i < wp.size(); i++) {
-			String wp2 = (String) wp.get(i);
-			String sp2 = (String) sp.get(i);
+			String wp2 = wp.get(i);
+			String sp2 = sp.get(i);
 			wl1.incrementCount(Integer.parseInt(wp2), Integer.parseInt(sp2));
 		}
 
@@ -151,7 +156,7 @@ public class SummaryUtil {
 
 		int sz = tokenMap.size();
 		double wdis[][] = new double[sz][sz];
-		Set s1 = tokenMap.keySet();
+		Set<String> s1 = tokenMap.keySet();
 		Object obj[] = s1.toArray();
 
 		for (int i = 0; i < sz; i++) {
@@ -174,36 +179,36 @@ public class SummaryUtil {
 		}
 
 		summary.append("No of unique words:" +tokenMap.size() + "\n");
-		Enumeration key = tokenMap.keys();
+		Enumeration<String> key = tokenMap.keys();
 		while (key.hasMoreElements()) {
-			Token wl = (Token) tokenMap.get(key.nextElement());
+			Token wl =  tokenMap.get(key.nextElement());
 			summary.append("\n" +wl.getWord() + ":  " + wl.getCount());	
 		}
 	}
 
 	public void significant() {
 
-		Enumeration key = tokenMap.keys();
+		Enumeration<String> key = tokenMap.keys();
 		while (key.hasMoreElements())
 			delword(key.nextElement());
 
 		summary.append("No of Significant words:" +tokenMap.size() + "\n");
 		key = tokenMap.keys();
 		while (key.hasMoreElements()) {
-			Token wl = (Token) tokenMap.get(key.nextElement());
+			Token wl =  tokenMap.get(key.nextElement());
 			summary.append("\n" +wl.getWord() + ":  " + wl.getCount() + ":"+wl.sentenseCount() );	
 		}
 	}
 
 	public void weight() {
-		Enumeration key = tokenMap.keys();
+		Enumeration<String> key = tokenMap.keys();
 		while (key.hasMoreElements())
 			setwight(key.nextElement());
 
 		summary.append("Weight of Significant words:" + "\n");
 		key = tokenMap.keys();
 		while (key.hasMoreElements()) {
-			Token wl = (Token) tokenMap.get(key.nextElement());
+			Token wl =  tokenMap.get(key.nextElement());
 			summary.append("\n" +wl.getWord() + ":  " + wl.weight());		
 		}
 	}
@@ -214,20 +219,20 @@ public class SummaryUtil {
 		int mi = 0;
 
 		for (int i = 0; i < sentenseList.size(); i++) {
-			sl = (Sentense) sentenseList.get(i);
+			sl =  sentenseList.get(i);
 			String sen = sl.getsrSentence();
-			Enumeration key = tokenMap.keys();
+			Enumeration<String> key = tokenMap.keys();
 			while (key.hasMoreElements()) {
-				String str = (String) key.nextElement();
+				String str = key.nextElement();
 				if (sen.indexOf(str) != -1) {
-					Token wl = (Token) tokenMap.get(str);
+					Token wl =  tokenMap.get(str);
 					sl.weight(wl.weight());
 				}
 			}
 		}
 
 		for (int i = 0; i < sentenseList.size(); i++) {
-			sl = (Sentense) sentenseList.get(i);
+			sl =  sentenseList.get(i);
 			if (sl.weight() > max) {
 				max = sl.weight();
 				mi = i;
@@ -236,19 +241,19 @@ public class SummaryUtil {
 
 		summary.append("\t SUMMARY \n" ); 
 		String str1 = sl.getRawSentense();
-		sl = (Sentense) sentenseList.get(mi);
+		sl =  sentenseList.get(mi);
 		summary.append(sl.getRawSentense() +"\n" );
 		  summary.append("\n Sentense  and Ranking "  +"\n");
 
 		for (int i = 0; i < sentenseList.size(); i++) {
-			sl = (Sentense) sentenseList.get(i);
+			sl =  sentenseList.get(i);
 			summary.append("\n" + (i+1) +" : " + sl.getRawSentense() + " : " + sl.weight());     
 		}
 
 		return str1;
 	}
 
-	public String summarize(String s) {
+	public Set<String> summarize(String s) {
 
 		separateSentense(s);
 		removeStopWords();
@@ -262,7 +267,7 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return summary.toString();
+		return summaryPoints;
 	}
 
 	public static void main(String str[]) {

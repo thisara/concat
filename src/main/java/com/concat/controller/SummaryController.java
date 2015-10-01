@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import com.concat.model.Summary;
 import com.concat.service.SummaryService;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -25,7 +27,7 @@ public class SummaryController {
 	}
 	
 	@RequestMapping(value = "/summarize", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public @ResponseBody String summarize(@RequestBody String text) {
+	public @ResponseBody Set<String> summarize(@RequestBody String text) {
         System.out.println("summaryService" + text);
 
         SummaryUtil s = new SummaryUtil();
