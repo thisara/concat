@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -32,6 +33,39 @@
                 <!-- task notificatoin start -->
                 <li id="task_notificatoin_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="">
+=======
+﻿<section id="container" class="">
+    <!--header start-->
+
+    <header class="header dark-bg">
+        <div class="toggle-nav">
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+        </div>
+
+        <!--logo start-->
+        <a href="index.html" class="logo">Concat</a>
+        <!--logo end-->
+
+        <!--<div class="nav search-row" id="top_menu">
+            &lt;!&ndash;  search form start &ndash;&gt;
+            <ul class="nav top-menu">
+                <li>
+                    <form class="navbar-form">
+                        <input class="form-control" placeholder="Search" type="text">
+                    </form>
+                </li>
+            </ul>
+            &lt;!&ndash;  search form end &ndash;&gt;
+        </div>-->
+
+        <div class="top-nav notification-row">
+            <!-- notificatoin dropdown start-->
+            <ul class="nav pull-right top-menu">
+
+                <!-- task notificatoin start -->
+                <li id="task_notificatoin_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="">
+>>>>>>> branch 'master' of git@github.com:thisara/concat.git
                         <span class="icon-task-l"></i>
                            
                             <span class="badge bg-important"></span></a>
