@@ -20,15 +20,20 @@ public class SummaryUtil {
 	
 	Set<String> summaryPoints;
 	StringBuffer summary;
+	StringBuffer finalSummary;
 	ArrayList<Sentense> sentenseList;
 	Hashtable<String,Token> tokenMap;
 	double scnt;
 
+	String lineBreak = "<br/>";
+	String bulletPoint = " - ";
+	
 	public SummaryUtil() {
 		sentenseList = new ArrayList<Sentense>();
 		summaryPoints = new TreeSet<String>();
 		tokenMap = new Hashtable<String,Token>();
-		summary = new StringBuffer();		
+		summary = new StringBuffer();	
+		finalSummary = new StringBuffer();
 	}
 
 	public void removeStopWords() {
@@ -267,7 +272,7 @@ public class SummaryUtil {
 	}
 
 	//Summarize text
-	public Set<String> summarize(String s) {
+	public String summarize(String s) {
 
 		separateSentense(s);
 		removeStopWords();
@@ -281,11 +286,11 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return summaryPoints;
+		return formatResult(summaryPoints);
 	}
 
 	//Summarize text on a text file
-	public Set<String> summarize(File file) {
+	public String summarize(File file) {
 
 		separateSentense(file);
 		removeStopWords();
@@ -299,7 +304,16 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return summaryPoints;
+		return formatResult(summaryPoints);
+	}
+	
+	public String formatResult(Set<String> summaryPoints){
+		for(String s:summaryPoints){
+			if(s!=null && s.length()>1){
+				finalSummary.append(bulletPoint + s + lineBreak);
+			}
+		}
+		return finalSummary.toString();
 	}
 	
 	public static void main(String str[]) {
@@ -311,4 +325,4 @@ public class SummaryUtil {
 
 	}
 
-}
+} 

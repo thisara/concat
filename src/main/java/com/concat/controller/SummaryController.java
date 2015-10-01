@@ -23,6 +23,7 @@ import com.concat.util.SummaryUtil;
 public class SummaryController {
 	
 	private SummaryService summaryService;
+	private Summary summary;
 	
 	@Autowired(required=true)
 	@Qualifier(value="summaryService")
@@ -31,21 +32,27 @@ public class SummaryController {
 	}
 	
 	@RequestMapping(value = "/summarize", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public @ResponseBody Set<String> summarize(@RequestBody String text) {
-        System.out.println("summaryService" + text);
-
+	public @ResponseBody String summarize(@RequestBody String originalText) {
+  
         SummaryUtil s = new SummaryUtil();
+		
+		String summaryText = s.summarize(originalText);
 
-        return s.summarize(text);//"summary "+userIdentity+" - "+originalText;
+        logService(originalText, summaryText, "TODO");
+        
+        return summaryText;//"summary "+userIdentity+" - "+originalText;
 	}
 	
 	@RequestMapping(value = "/summarizeFile", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public @ResponseBody Set<String> summarizeFile(@RequestBody File file) {
-        System.out.println("summaryService" + file);
+	public @ResponseBody String summarizeFile(@RequestBody File file) {
 
-        SummaryUtil s = new SummaryUtil();
+		SummaryUtil s = new SummaryUtil();
+		
+		String summaryText = s.summarize(file);
 
-        return s.summarize(file);//"summary "+userIdentity+" - "+originalText;
+        logService(file.toString(), summaryText, "TODO");
+        
+        return summaryText;//"summary "+userIdentity+" - "+originalText;
 	}
 	
 	@RequestMapping(value = "/summaries", method = RequestMethod.GET)
@@ -71,8 +78,7 @@ public class SummaryController {
 	}
 	
 	@RequestMapping("/remove/{id}")
-    public String removeSummary(@PathVariable("id") int id){
-		
+    public String removeSummary(@PathVariable("id") int id){		
         this.summaryService.removeSummary(id);
         return "redirect:/summaries";
     }
@@ -83,5 +89,22 @@ public class SummaryController {
         model.addAttribute("listSummaries", this.summaryService.listSummaries());
         return "summary";
     }
+    
+    public void logService(String originalText,String summaryText, String userIdentity){
+
+		try{
+		
+		summary = new Summary();	
+			
+		summary.setOriginalText(originalText);
+		summary.setSummary(summaryText);
+		summary.setUserIdentity(userIdentity);
+		
+		summaryService.addSummary(summary);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 }
