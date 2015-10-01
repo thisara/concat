@@ -11,8 +11,17 @@
 
 <div class="form-group">
     <label for="exampleInputFile">Select File</label>
-    <input type="file" id="exampleInputFile">
+    <input type="file" id="exampleInputFile" ng-model="selectedFile"  name="selectedFile">
 </div>
+
 <div class="form-group">
-    <button type="submit" class="btn btn-info col-sm-2">Summerize</button>
+    <div class="col-sm-offset-10 col-sm-2">
+        <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="searchUploadedSummery(selectedFile)">Summarize</button>
+    </div>
+</div>
+
+<div class="form-group" ng-show="summaryUploadTextShow">
+    <label>Summary</label>
+    <div class="form-control" ng-bind="summaryUploadText" ng-show="summaryUploadTextShow"  name="enteredText" rows="10" name="original_text"></div>
+
 </div>

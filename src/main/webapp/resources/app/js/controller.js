@@ -52,6 +52,31 @@ controllersModule.controller('systemIntegrationController', function ($scope) {
 
 });
 
+controllersModule.controller('systemUploadController', function ($scope) {
+
+    $scope.summaryUploadTextShow = false;
+    $scope.summaryUploadText = null;
+
+        $scope.searchUploadedSummery = function(){
+            var file = $scope.selectedFile;
+            alert('file is ' );
+            alert(file);
+        };
+       /* $http({ method: 'POST', url: '/ConCat/summarize', data: $scope.enteredText}).
+
+            success(function (data, status, headers, config) {
+                //alert(data);
+                $scope.summaryUploadTextShow = true;
+                $scope.summaryUploadText = data;
+
+
+            }).
+            error(function (data, status, headers, config) {
+                //alert("error");
+            });*/
+
+});
+
 controllersModule.run(function ($rootScope, $state, $http, $window) {
 
 });
