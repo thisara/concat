@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 <head>
     <title></title>
@@ -46,6 +46,8 @@
     <script src="resources/js/jquery.scrollTo.min.js"></script>
     <script src="resources/js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
     <script src="resources/js/scripts.js"></script>
+    
+    <script src="resources/app/frameworks/angular-file-upload/angular-upload.min.js"></script>
 </body>
 
 </html>

@@ -3,7 +3,8 @@
     'servicesModule',
     'ui.router',
     'cgBusy',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'lr.upload'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {

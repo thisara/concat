@@ -52,14 +52,14 @@ controllersModule.controller('systemIntegrationController', function ($scope) {
 
 });
 
-controllersModule.controller('systemUploadController', function ($scope) {
+controllersModule.controller('systemUploadController', function ($scope, upload) {
 
     $scope.summaryUploadTextShow = false;
     $scope.summaryUploadText = null;
 
         $scope.searchUploadedSummery = function(){
             var file = $scope.selectedFile;
-            alert('file is ' );
+            
             alert(file);
         };
        /* $http({ method: 'POST', url: '/ConCat/summarize', data: $scope.enteredText}).
@@ -74,6 +74,28 @@ controllersModule.controller('systemUploadController', function ($scope) {
             error(function (data, status, headers, config) {
                 //alert("error");
             });*/
+        
+        $scope.doUpload = function () {
+        	
+        	console.log(selectedFile);
+        	
+            upload({
+              url: '/upload',
+              method: 'POST',
+              data: {
+                anint: 123,
+                aBlob: new Blob([1,2,3]), // Only works in newer browsers
+                aFile: $scope.myFile // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
+              }
+            }).then(
+              function (response) {
+                console.log(response.data); // will output whatever you choose to return from the server on a successful upload
+              },
+              function (response) {
+                  console.error(response); //  Will return if status code is above 200 and lower than 300, same as $http
+              }
+            );
+          }
 
 });
 

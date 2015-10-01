@@ -1,4 +1,4 @@
-﻿<div class="row">
+<div class="row">
     <div class="col-lg-12">
         <h3 class="page-header"><i class="fa fa fa-bars"></i>Upload Content</h3>
         <ol class="breadcrumb">
@@ -11,12 +11,13 @@
 
 <div class="form-group">
     <label for="exampleInputFile">Select File</label>
-    <input type="file" id="exampleInputFile" ng-model="selectedFile"  name="selectedFile">
+    <input type="file" id="exampleInputFile" name="selectedFile">
 </div>
+
 
 <div class="form-group">
     <div class="col-sm-offset-10 col-sm-2">
-        <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="searchUploadedSummery(selectedFile)">Summarize</button>
+        <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="doUpload()">Summarize</button>
     </div>
 </div>
 
