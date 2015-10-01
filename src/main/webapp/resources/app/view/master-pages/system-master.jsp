@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -306,7 +306,7 @@
                   </li>
                 -->
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a href="#/System/Reports" class="">
                           <i class="icon_table"></i>
                           <span>Saved Reports</span>
                           <span class="menu-arrow arrow_carrot-right"></span>

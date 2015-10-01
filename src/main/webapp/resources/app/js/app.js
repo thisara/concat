@@ -45,7 +45,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             title: 'Upload Content'
         }).state('System.Reports', {
         url: "/Reports",
-        templateUrl: "resources/app/view/system/savedReports.jsp",
+        templateUrl: "resources/app/view/system/savedReport.jsp",
         controller: 'systemReportsController',
         title: 'Saved Reports'
     });

@@ -77,6 +77,24 @@ controllersModule.controller('systemUploadController', function ($scope) {
 
 });
 
+controllersModule.controller('systemReportsController', function ($scope, $http) {
+
+    $http({ method: 'GET', url: '/ConCat/savedSummaries'}).
+
+        success(function (data, status, headers, config) {
+
+            $scope.summaryList = data;
+            //alert(data);
+
+
+
+        }).
+        error(function (data, status, headers, config) {
+            //alert("error");
+        });
+
+});
+
 controllersModule.run(function ($rootScope, $state, $http, $window) {
 
 });
