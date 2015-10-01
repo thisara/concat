@@ -29,6 +29,7 @@
     <script src="resources/app/js/controller.js"></script>
     <script src="resources/app/js/services.js"></script>
     <script src="resources/app/js/animations.js"></script>
+    <script src="resources/app/js/directives.js"></script>
     <script src="resources/app/frameworks/angularj-ngQueue/ngQueue.js"></script>
 </head>
 <body>

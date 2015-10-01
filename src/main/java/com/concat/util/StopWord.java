@@ -15,7 +15,7 @@ public class StopWord {
 		int cnt = 0, sz = 0;
 		char bt[] = null;
 		try {
-			File fp = new File("/home/thisara/mars/ConCat/src/main/java/com/concat/util/stopwords.txt");
+			File fp = new File("F:/TPI-UserStories/Q3/L2_ToolProfileAutomation/EclipseWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/ConCat/WEB-INF/classes/com/concat/util/stopwords.txt");
 			FileReader fis = new FileReader(fp);
 			sz = (int) fp.length();
 			bt = new char[sz];

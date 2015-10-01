@@ -4,7 +4,8 @@
     'ui.router',
     'cgBusy',
     'LocalStorageModule',
-    'lr.upload'
+    'lr.upload',
+    'tpiAppDirectives'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {

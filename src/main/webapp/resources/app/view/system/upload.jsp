@@ -9,15 +9,17 @@
     </div>
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="exampleInputFile">Select File</label>
-    <input type="file" id="exampleInputFile" name="selectedFile">
+    <input type="file" id="exampleInputFile" name="selectedFile" ng-model="selectedFile">
 </div>
+ -->
+<input type="file" file-model="myFile"/>
 
 
 <div class="form-group">
     <div class="col-sm-offset-10 col-sm-2">
-        <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="doUpload()">Summarize</button>
+        <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="uploadFileToUrl()">Summarize</button>
     </div>
 </div>
 

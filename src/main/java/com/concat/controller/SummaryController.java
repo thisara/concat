@@ -1,6 +1,7 @@
 package com.concat.controller;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class SummaryController {
         return summaryText;//"summary "+userIdentity+" - "+originalText;
 	}
 	
-	@RequestMapping(value = "/summarizeFile", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/summarizeFile", method = RequestMethod.POST)
 	public @ResponseBody String summarizeFile(@RequestBody File file) {
 
 		SummaryUtil s = new SummaryUtil();
