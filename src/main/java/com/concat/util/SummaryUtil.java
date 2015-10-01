@@ -20,15 +20,20 @@ public class SummaryUtil {
 	
 	Set<String> summaryPoints;
 	StringBuffer summary;
+	StringBuffer finalSummary;
 	ArrayList<Sentense> sentenseList;
 	Hashtable<String,Token> tokenMap;
 	double scnt;
 
+	String lineBreak = "<br/>";
+	String bulletPoint = " - ";
+	
 	public SummaryUtil() {
 		sentenseList = new ArrayList<Sentense>();
 		summaryPoints = new TreeSet<String>();
 		tokenMap = new Hashtable<String,Token>();
-		summary = new StringBuffer();		
+		summary = new StringBuffer();	
+		finalSummary = new StringBuffer();
 	}
 
 	public void removeStopWords() {
@@ -60,6 +65,19 @@ public class SummaryUtil {
 			summaryPoints.add(sl.getsrSentence());
 		}
 	}
+	
+	public void separateSentense(File fp) {	
+		SentenseUtil sentense=new SentenseUtil(fp);
+		sentense.separateSentense(sentenseList);	
+		summary.append("NO OF SENTENSE :"+sentenseList.size() +"\n\n");		
+		scnt=sentenseList.size();
+		for(int i=0;i<sentenseList.size();i++)
+		 {	  
+			Sentense sl= sentenseList.get(i);  	 
+			summary.append("\n " + (i+1) +":  " + sl.getRawSentense());
+			summaryPoints.add(sl.getsrSentence());
+		 }		
+	 }
 
 	public double difPos(String str1, String str2) {
 		int s1 = str1.length();
@@ -253,7 +271,8 @@ public class SummaryUtil {
 		return str1;
 	}
 
-	public Set<String> summarize(String s) {
+	//Summarize text
+	public String summarize(String s) {
 
 		separateSentense(s);
 		removeStopWords();
@@ -267,9 +286,36 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return summaryPoints;
+		return formatResult(summaryPoints);
 	}
 
+	//Summarize text on a text file
+	public String summarize(File file) {
+
+		separateSentense(file);
+		removeStopWords();
+		uniqueWords();
+		stemming();
+		significant();
+		weight();
+		String str = ranking();
+		System.out.println(str);
+		
+		summary.append("SUMMARY \n\n" ); 
+		summary.append(str);
+		
+		return formatResult(summaryPoints);
+	}
+	
+	public String formatResult(Set<String> summaryPoints){
+		for(String s:summaryPoints){
+			if(s!=null && s.length()>1){
+				finalSummary.append(bulletPoint + s + lineBreak);
+			}
+		}
+		return finalSummary.toString();
+	}
+	
 	public static void main(String str[]) {
 		
 		SummaryUtil sm = new SummaryUtil();
@@ -279,4 +325,4 @@ public class SummaryUtil {
 
 	}
 
-}
+} 
