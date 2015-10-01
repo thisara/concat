@@ -1,4 +1,4 @@
-﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -269,10 +269,13 @@
                         <span>Type In</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
-                    <ul class="sub">
-                        <li><a class="" href="form_component.html">Form Elements</a></li>
-                        <li><a class="" href="form_validation.html">Form Validation</a></li>
-                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="#/System/Integration" class="">
+                        <i class="icon_desktop"></i>
+                        <span>Integration</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
                 </li>
                 <!--<li class="sub-menu">
                       <a href="javascript:;" class="">

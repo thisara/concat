@@ -33,6 +33,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "resources/app/view/system/type-in.jsp",
             controller: 'systemTypeInController',
             title: 'Type In'
+        }).state('System.Integration', {
+            url: "/Integration",
+            templateUrl: "resources/app/view/system/integration.jsp",
+            controller: 'systemIntegrationController',
+            title: 'Type In'
         }).state('System.Upload', {
             url: "/Upload",
             templateUrl: "resources/app/view/system/upload.jsp",

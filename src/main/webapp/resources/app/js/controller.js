@@ -29,6 +29,10 @@ controllersModule.controller('systemTypeInController', function ($scope) {
 
 });
 
+controllersModule.controller('systemIntegrationController', function ($scope) {
+
+});
+
 controllersModule.run(function ($rootScope, $state, $http, $window) {
 
 });
