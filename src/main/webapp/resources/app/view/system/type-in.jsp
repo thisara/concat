@@ -21,7 +21,7 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group" ng-show="summaryTextShow">
         <label>Summary</label>
         <div class="form-control" ng-bind="summaryText" ng-show="summaryTextShow"  name="enteredText" rows="10" name="original_text"></div>
 
