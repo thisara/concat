@@ -1,5 +1,6 @@
 package com.concat.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -25,14 +26,21 @@ public class SummaryDAOImpl implements SummaryDAO {
 
 	private MongoTemplate mongoTemplate;
 	private final String SUMMARY_COLLECTION = "SUMMARY";
+	private final String COUNTER_COLLECTION = "users";
 	
 	public void setMongoTemplate(MongoTemplate mongoTemplate) {
 		this.mongoTemplate = mongoTemplate;
 	}
 
 	@Override
-	public void addSummary(Summary s) {	
-		s.setId(getNextSequence(SUMMARY_COLLECTION));
+	public void addSummary(Summary s) {
+		
+		//Tempory solution, need to implement counter
+		List<Summary> summaryList = listSummaries();
+		Collections.sort(summaryList);
+		Summary summary = summaryList.get(summaryList.size()-1);
+		s.setId(summary.getId()+1);//getNextSequence(SUMMARY_COLLECTION));
+		
 		mongoTemplate.insert(s, SUMMARY_COLLECTION);
 		logger.info("Summary saved successfully, Summary Details="+s);
 	}
@@ -57,8 +65,8 @@ public class SummaryDAOImpl implements SummaryDAO {
 	@Override
 	public void removeSummary(int id) {
 		Query query = new Query(Criteria.where("_id").is(id));
-		//WriteResult result = this.mongoTemplate.remove(query, Summary.class, SUMMARY_COLLECTION);
 		
+		//WriteResult result = this.mongoTemplate.remove(query, Summary.class, SUMMARY_COLLECTION);
 		//Session session = this.sessionFactory.getCurrentSession();
 		//Summary p = (Summary) session.load(Summary.class, new Integer(id));
 		//if(null != p){
@@ -69,13 +77,14 @@ public class SummaryDAOImpl implements SummaryDAO {
 	
 	@Override
 	public int getNextSequence(String collectionName) {
-	    Counter counter = mongoTemplate.findAndModify(
-	      query(where("_id").is(collectionName)), 
-	      new Update().inc("seq", 1),
-	      options().returnNew(true),
-	      Counter.class);
-	       
-	    return counter.getSeq();
+		
+		Query query = new Query(Criteria.where("_id").is("1"));
+		Counter counter = mongoTemplate.findOne(query, Counter.class, COUNTER_COLLECTION);
+		
+		int id = counter.getSeq();
+		id = id + 1;
+		   
+	    return id;
 	 }
 
 }
