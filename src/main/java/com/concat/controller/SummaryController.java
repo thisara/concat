@@ -25,6 +25,7 @@ public class SummaryController {
 	
 	private SummaryService summaryService;
 	private Summary summary;
+	private StringBuffer finalSummary;
 	
 	@Autowired(required=true)
 	@Qualifier(value="summaryService")
@@ -33,25 +34,25 @@ public class SummaryController {
 	}
 	
 	@RequestMapping(value = "/summarize", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public @ResponseBody String summarize(@RequestBody String originalText) {
+	public @ResponseBody Set<String> summarize(@RequestBody String originalText) {
   
         SummaryUtil s = new SummaryUtil();
 		
-		String summaryText = s.summarize(originalText);
+		Set<String> summaryText = s.summarize(originalText);
 
-        logService(originalText, summaryText, "TODO");
+        logService(originalText, summaryText.toString(), "TODO");
         
         return summaryText;//"summary "+userIdentity+" - "+originalText;
 	}
 	
 	@RequestMapping(value = "/summarizeFile", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
-	public @ResponseBody String summarizeFile(@RequestBody File file) {
+	public @ResponseBody Set<String> summarizeFile(@RequestBody File file) {
 
 		SummaryUtil s = new SummaryUtil();
 		
-		String summaryText = s.summarize(file);
+		Set<String> summaryText = s.summarize(file);
 
-        logService(file.toString(), summaryText, "TODO");
+        logService(file.toString(), summaryText.toString(), "TODO");
         
         return summaryText;//"summary "+userIdentity+" - "+originalText;
 	}
