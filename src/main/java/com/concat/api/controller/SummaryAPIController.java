@@ -16,6 +16,11 @@ import com.concat.model.Summary;
 import com.concat.service.SummaryService;
 import com.concat.util.SummaryUtil;
 
+/**
+ * 
+ * @author thisara
+ *
+ */
 @Controller
 public class SummaryAPIController {
 
