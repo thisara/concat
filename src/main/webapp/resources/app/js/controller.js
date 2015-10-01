@@ -48,6 +48,10 @@ controllersModule.controller('systemTypeInController', function ($scope, $http) 
     }
 });
 
+controllersModule.controller('systemIntegrationController', function ($scope) {
+
+});
+
 controllersModule.run(function ($rootScope, $state, $http, $window) {
 
 });
