@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.util.Enumeration;
 import java.util.Set;
 
@@ -16,7 +17,8 @@ import java.util.Set;
  *
  */
 public class SummaryUtil {
-
+	
+	Set<String> summaryPoints;
 	StringBuffer summary;
 	ArrayList sentenseList;
 	Hashtable tokenMap;
@@ -24,8 +26,9 @@ public class SummaryUtil {
 
 	public SummaryUtil() {
 		sentenseList = new ArrayList();
+		summaryPoints = new TreeSet<String>();
 		tokenMap = new Hashtable();
-		summary = new StringBuffer();
+		summary = new StringBuffer();		
 	}
 
 	public void removeStopWords() {
@@ -41,6 +44,7 @@ public class SummaryUtil {
 		for (int i = 0; i < sentenseList.size(); i++) {
 			Sentense sl = (Sentense) sentenseList.get(i);
 			summary.append("\n" + (i+1) +":  "+ sl.getsrSentence());
+			summaryPoints.add(sl.getsrSentence());
 		}
 
 	}
@@ -53,6 +57,7 @@ public class SummaryUtil {
 		for (int i = 0; i < sentenseList.size(); i++) {
 			Sentense sl = (Sentense) sentenseList.get(i);
 			summary.append("\n " + (i+1) +":  " + sl.getRawSentense());
+			summaryPoints.add(sl.getsrSentence());
 		}
 	}
 
@@ -248,7 +253,7 @@ public class SummaryUtil {
 		return str1;
 	}
 
-	public String summarize(String s) {
+	public Set<String> summarize(String s) {
 
 		separateSentense(s);
 		removeStopWords();
@@ -262,7 +267,7 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return summary.toString();
+		return summaryPoints;
 	}
 
 	public static void main(String str[]) {
