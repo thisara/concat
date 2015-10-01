@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -11,10 +11,10 @@
         </div>
 
         <!--logo start-->
-        <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+        <a href="index.html" class="logo">Concat</a>
         <!--logo end-->
 
-        <div class="nav search-row" id="top_menu">
+        <%--<div class="nav search-row" id="top_menu">
             <!--  search form start -->
             <ul class="nav top-menu">
                 <li>
@@ -24,7 +24,7 @@
                 </li>
             </ul>
             <!--  search form end -->
-        </div>
+        </div>--%>
 
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
