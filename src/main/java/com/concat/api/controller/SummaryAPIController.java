@@ -1,6 +1,7 @@
 package com.concat.api.controller;
 
 import java.io.File;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,25 +29,25 @@ public class SummaryAPIController {
 	}
 	
 	@RequestMapping(value = "/concat/text/summary", method = RequestMethod.POST)
-	public @ResponseBody String summarizeText(@RequestParam("userIdentity") String userIdentity,@RequestParam("originalText") String originalText) {
+	public @ResponseBody Set<String> summarizeText(@RequestParam("userIdentity") String userIdentity,@RequestParam("originalText") String originalText) {
 		
 		SummaryUtil s = new SummaryUtil();
 		
-		String summaryText = s.summarize(originalText);
+		Set<String> summaryText = s.summarize(originalText);
 				
-		logService(originalText, summaryText, userIdentity);
+		logService(originalText, summaryText.toString(), userIdentity);
 		
 		return summaryText;
 	}
 	
 	@RequestMapping(value = "/concat/file/summary", method = RequestMethod.POST)
-	public @ResponseBody String summarizeFile(@PathVariable("userIdentity") String userIdentity,@PathVariable("originalText") File originalFile) {
+	public @ResponseBody Set<String> summarizeFile(@PathVariable("userIdentity") String userIdentity,@PathVariable("originalText") File originalFile) {
 	
 		SummaryUtil s = new SummaryUtil();
 		
-		String summaryText = s.summarize(originalFile);
+		Set<String> summaryText = s.summarize(originalFile);
 				
-		logService(originalFile.toString(), summaryText, userIdentity);
+		logService(originalFile.toString(), summaryText.toString(), userIdentity);
 		
 		return summaryText;
 	}

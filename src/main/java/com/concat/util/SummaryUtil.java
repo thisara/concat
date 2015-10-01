@@ -272,7 +272,7 @@ public class SummaryUtil {
 	}
 
 	//Summarize text
-	public String summarize(String s) {
+	public Set<String> summarize(String s) {
 
 		separateSentense(s);
 		removeStopWords();
@@ -286,11 +286,11 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return formatResult(summaryPoints);
+		return summaryPoints;
 	}
 
 	//Summarize text on a text file
-	public String summarize(File file) {
+	public Set<String> summarize(File file) {
 
 		separateSentense(file);
 		removeStopWords();
@@ -304,7 +304,7 @@ public class SummaryUtil {
 		summary.append("SUMMARY \n\n" ); 
 		summary.append(str);
 		
-		return formatResult(summaryPoints);
+		return summaryPoints;
 	}
 	
 	public String formatResult(Set<String> summaryPoints){
