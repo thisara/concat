@@ -23,6 +23,13 @@ public class SummaryController {
 		this.summaryService = ps;
 	}
 	
+	@RequestMapping(value = "/summarize", method = RequestMethod.GET)
+	public String summarize(Model model) {
+		model.addAttribute("summary", new Summary());
+		model.addAttribute("listSummaries", this.summaryService.listSummaries());
+		return "summary";
+	}
+	
 	@RequestMapping(value = "/summaries", method = RequestMethod.GET)
 	public String listSummarys(Model model) {
 		model.addAttribute("summary", new Summary());

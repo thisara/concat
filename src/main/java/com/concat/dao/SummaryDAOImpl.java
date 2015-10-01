@@ -43,7 +43,6 @@ public class SummaryDAOImpl implements SummaryDAO {
 		logger.info("Summary updated successfully, Summary Details="+s);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Summary> listSummaries() {
 		return this.mongoTemplate.findAll(Summary.class, SUMMARY_COLLECTION);

@@ -15,27 +15,27 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('Login', {
             url: "/Login",
-            templateUrl: "resources/app/view/account/Login.html",
+            templateUrl: "resources/app/view/account/Login.jsp",
             controller: 'LoginController',
             title: 'Login'
         }).state('System', {
             url: "/System",
-            templateUrl: "resources/app/view/master-pages/system-master.html",
+            templateUrl: "resources/app/view/master-pages/system-master.jsp",
             controller: 'SystemMasterController',
             title: 'System Master Page'
         }).state('System.Dashboard', {
             url: "/Dashboard",
-            templateUrl: "resources/app/view/system/dashboard.html",
+            templateUrl: "resources/app/view/system/dashboard.jsp",
             controller: 'systemDashboardController',
             title: 'Dashboard'
         }).state('System.TypeIn', {
             url: "/TypeIn",
-            templateUrl: "resources/app/view/system/type-in.html",
+            templateUrl: "resources/app/view/system/type-in.jsp",
             controller: 'systemTypeInController',
             title: 'Type In'
         }).state('System.Upload', {
             url: "/Upload",
-            templateUrl: "resources/app/view/system/upload.html",
+            templateUrl: "resources/app/view/system/upload.jsp",
             controller: 'systemUploadController',
             title: 'Upload Content'
         });
