@@ -13,13 +13,13 @@ public class Token {
 	private double scnt;
 	private double wght;
 
-	private ArrayList sentensePosList;
-	private ArrayList wordPosList;
+	private ArrayList<String> sentensePosList;
+	private ArrayList<String> wordPosList;
 
 	public Token(String token) {
 		word = new String(token);
-		sentensePosList = new ArrayList();
-		wordPosList = new ArrayList();
+		sentensePosList = new ArrayList<String>();
+		wordPosList = new ArrayList<String>();
 		count = 0;
 		scnt = 0;
 	}
@@ -48,11 +48,11 @@ public class Token {
 		wordPosList.add(wordPos + "");
 	}
 
-	public ArrayList getWordPosList() {
+	public ArrayList<String> getWordPosList() {
 		return wordPosList;
 	}
 
-	public ArrayList getSentensePos() {
+	public ArrayList<String> getSentensePos() {
 		return sentensePosList;
 	}
 

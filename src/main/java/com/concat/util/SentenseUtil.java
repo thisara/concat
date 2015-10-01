@@ -15,7 +15,7 @@ public class SentenseUtil {
 		doc = doc.replaceAll("\r\n", " ");
 	}
 
-	public AbstractList separateSentense(AbstractList sentenseList) {
+	public AbstractList<Sentense> separateSentense(AbstractList<Sentense> sentenseList) {
 		int fs1 = 0, fs2 = 0;
 		int nx = 0;
 
