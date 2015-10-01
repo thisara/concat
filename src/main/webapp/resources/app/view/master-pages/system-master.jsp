@@ -11,10 +11,10 @@
         </div>
 
         <!--logo start-->
-        <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+        <a href="index.html" class="logo">Concat</a>
         <!--logo end-->
 
-        <div class="nav search-row" id="top_menu">
+        <%--<div class="nav search-row" id="top_menu">
             <!--  search form start -->
             <ul class="nav top-menu">
                 <li>
@@ -24,7 +24,7 @@
                 </li>
             </ul>
             <!--  search form end -->
-        </div>
+        </div>--%>
 
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
@@ -269,10 +269,13 @@
                         <span>Type In</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
-                    <ul class="sub">
-                        <li><a class="" href="form_component.html">Form Elements</a></li>
-                        <li><a class="" href="form_validation.html">Form Validation</a></li>
-                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="#/System/Integration" class="">
+                        <i class="icon_desktop"></i>
+                        <span>Integration</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
                 </li>
                 <!--<li class="sub-menu">
                       <a href="javascript:;" class="">

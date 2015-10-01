@@ -9,14 +9,20 @@
     </div>
 </div>
 
-<form action="summarize" method="GET">
     <div class="form-group">
         <label>Content</label>
-        <textarea class="form-control" rows="10" name="original_text"></textarea>
+        <textarea class="form-control" ng-model="enteredText"  name="enteredText" rows="10" name="original_text"></textarea>
+
     </div>
     <div class="form-group">
         <div class="col-sm-offset-10 col-sm-2">
-            <input type="submit" value="Summerize"/>
+             <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="searchSummery(enteredText)">Summarize</button>
         </div>
     </div>
-</form>
+
+
+    <div class="form-group" ng-show="summaryTextShow">
+        <label>Summary</label>
+        <div class="form-control" ng-bind="summaryText" ng-show="summaryTextShow"  name="enteredText" rows="10" name="original_text"></div>
+
+    </div>
