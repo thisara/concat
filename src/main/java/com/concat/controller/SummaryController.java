@@ -1,16 +1,17 @@
 package com.concat.controller;
 
+import com.concat.util.SummaryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.util.MimeTypeUtils;
+import org.springframework.web.bind.annotation.*;
 
 import com.concat.model.Summary;
 import com.concat.service.SummaryService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class SummaryController {
@@ -23,11 +24,13 @@ public class SummaryController {
 		this.summaryService = ps;
 	}
 	
-	@RequestMapping(value = "/summarize", method = RequestMethod.GET)
-	public String summarize(Model model) {
-		model.addAttribute("summary", new Summary());
-		model.addAttribute("listSummaries", this.summaryService.listSummaries());
-		return "summary";
+	@RequestMapping(value = "/summarize", method = RequestMethod.POST, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public @ResponseBody String summarize(@RequestBody String text) {
+        System.out.println("summaryService" + text);
+
+        SummaryUtil s = new SummaryUtil();
+
+        return s.summarize(text);//"summary "+userIdentity+" - "+originalText;
 	}
 	
 	@RequestMapping(value = "/summaries", method = RequestMethod.GET)
