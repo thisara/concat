@@ -10,15 +10,16 @@
 </div>
 
 <div class="form-group">
-    <button type="submit" class="btn btn-info col-sm-2">Summerize</button>
+    <button id="btnSearch" style="min-width: 150px;" class="btn btn-info" ng-click="searchSummery(enteredText)"
+            data-toggle="modal" data-target="#myModal">Summarize</button>
 </div>
 
 <br /><br />
 
 <div class="panel panel-default">
   <div class="panel-heading">HTML Content</div>
-  <div class="panel-body" style="height: 400px;">    
-  	
+  <div class="panel-body" style="height: 400px;">
+    <div id="check">
   	<h1>Big Data and the Future of Business</h1>
 	<p class="Pa16">The basis of commercial enterprise is information. That hasn’t changed in thousands of years.&nbsp;</p>
 	<p class="Pa16">However, those who feel that today’s big data is just a continuation of past information trends are as wrong as if they were to claim that a stone tablet is essentially the same as a tablet computer or an abacus similar to a supercomputer.</p>
@@ -31,6 +32,6 @@
 	<p class="Pa16">For that reason, we need regulators who understand that the rules that govern big data can’t just be more&mdash;that is, more of the same. In fact, today’s rules do a poor job of protecting privacy, so simply heading forward with more of the existing mediocre policies makes little sense. Instead, big data businesses are crying out for regulations that are new, better, and, of course, different.</p>
 	<p class="Pa16">Big data will change business, and business will change society. The hope, of course, is that the benefits will outweigh the drawbacks, but that is mostly a hope. The big-data world is still very new, and, as a society, we’re not very good at handling all the data that we can collect now. We also can’t foresee the future. Technology will continue to surprise us, just as it would an ancient man with an abacus looking upon an iPhone. What <em>is</em> certain is that more will not be more: It will be different.</p>
 	<p class="Default"><strong><span style="font-size: 13.0080003738403px; line-height: 1.538em;">Read the full article </span><a target="_blank" href="https://www.bbvaopenmind.com/en/article/big-data-and-the-future-of-business/?utm_source=views&amp;utm_medium=article03&amp;utm_campaign=MITcompany&amp;utm_content=cukier-big-data" style="font-size: 13.0080003738403px; line-height: 1.538em;">here</a><span style="font-size: 13.0080003738403px; line-height: 1.538em;">.</span></strong></p></section>
-  	
+  	</div>
   </div>
 </div>

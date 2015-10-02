@@ -48,9 +48,34 @@ controllersModule.controller('systemTypeInController', function($scope, $http) {
 	}
 });
 
-controllersModule.controller('systemIntegrationController', function($scope) {
+controllersModule.controller('systemIntegrationController', function($scope, $http) {
+    $scope.summaryTextShow = false;
+    $scope.summaryText = null;
+
+    $scope.searchSummery = function(enteredText){
+
+        var checkElement = document.getElementById('check').innerHTML;
+        var plainText = htmlToPlaintext(checkElement);
+        $http({ method: 'POST', url: '/ConCat/concat/text/summary/api', data: plainText}).
+
+            success(function (data, status, headers, config) {
+                //alert(data);
+                $scope.summaryTextShow = true;
+                $scope.summaryText = data;
+
+
+            }).
+            error(function (data, status, headers, config) {
+                //alert("error");
+            });
+
+    }
 
 });
+
+function htmlToPlaintext(text) {
+    return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+}
 
 controllersModule.controller('systemUploadController', function($scope, upload, $http) {
 
