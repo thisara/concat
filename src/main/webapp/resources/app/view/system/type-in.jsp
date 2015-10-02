@@ -27,7 +27,10 @@
     <label>Summary</label>
     <div class="panel panel-default" ng-show="summaryTextShow"  name="enteredText" rows="10" name="original_text">
     	<div class="panel-body">
-	    	{{ summaryText }}
+    		<ul class="list-group">
+    			<li class="list-group-item" ng-repeat="s in summaryText">{{ s }} </li>
+    		</ul>
+	    	
     	</div>
     </div>
 </div>
@@ -44,7 +47,9 @@
       <div class="modal-body">
         	<div class="panel panel-default" ng-show="summaryTextShow"  name="enteredText" rows="10" name="original_text">
     		<div class="panel-body">
-	    		{{ summaryText }}
+	    		<ul class="list-group">
+    			<li class="list-group-item" ng-repeat="s in summaryText">{{ s }} </li>
+    		</ul>
     		</div>
     	</div>
       </div>
