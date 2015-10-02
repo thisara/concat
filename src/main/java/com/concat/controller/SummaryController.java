@@ -1,6 +1,7 @@
 package com.concat.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +57,10 @@ public class SummaryController {
         return summaryText;//"summary "+userIdentity+" - "+originalText;
 	}
 	
-	@RequestMapping(value = "/summaries", method = RequestMethod.GET)
-	public String listSummarys(Model model) {
-		model.addAttribute("summary", new Summary());
-		model.addAttribute("listSummaries", this.summaryService.listSummaries());
-		return "summary";
+	@RequestMapping(value = "/savedSummaries", method = RequestMethod.GET)
+	public @ResponseBody List<Summary> listSavedSummarys() {
+        List<Summary> summaries = summaryService.listSummaries();
+        return summaries;
 	}
 	
 	//For add and update summary both

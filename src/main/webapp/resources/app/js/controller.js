@@ -5,7 +5,7 @@ controllersModule.controller('LoginController', function($scope, $location,
 		localStorageService) {
 
 	$scope.onLogin = function() {
-		$location.path('System/Dashboard')
+		$location.path('System/Dashboard');
 	}
 });
 
@@ -92,6 +92,24 @@ controllersModule.controller('systemUploadController', function($scope, upload, 
 
 		});
 
-controllersModule.run(function($rootScope, $state, $http, $window) {
+controllersModule.controller('systemReportsController', function ($scope, $http) {
+
+    $http({ method: 'GET', url: '/ConCat/savedSummaries'}).
+
+        success(function (data, status, headers, config) {
+
+            $scope.summaryList = data;
+            //alert(data);
+
+
+
+        }).
+        error(function (data, status, headers, config) {
+            //alert("error");
+        });
+
+});
+
+controllersModule.run(function ($rootScope, $state, $http, $window) {
 
 });
