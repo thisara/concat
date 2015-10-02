@@ -16,7 +16,7 @@ public class SpecialCharacter {
 		int cnt = 0, sz = 0;
 		char bt[] = null;
 		try {
-			File fp = new File("/home/sudeep/Desktop/hack/concat/src/main/java/com/concat/util/specials.txt");
+			File fp = new File("F:/TPI-UserStories/Q3/L2_ToolProfileAutomation/EclipseWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp4/wtpwebapps/ConCat/WEB-INF/classes/com/concat/util/specials.txt");
 			FileReader fis = new FileReader(fp);
 			sz = (int) fp.length();
 			bt = new char[sz];

@@ -23,19 +23,6 @@
 </div>
 
 
-<div class="form-group" ng-show="summaryTextShow">
-    <label>Summary</label>
-    <div class="panel panel-default" ng-show="summaryTextShow"  name="enteredText" rows="10" name="original_text">
-    	<div class="panel-body">
-    		<ul class="list-group">
-    			<li class="list-group-item" ng-repeat="s in summaryText">{{ s }} </li>
-    		</ul>
-	    	
-    	</div>
-    </div>
-</div>
-
-
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document" style="top:auto; bottom: auto; right: auto; left: auto;">

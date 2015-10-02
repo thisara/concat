@@ -21,7 +21,7 @@ body{
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background-image: url(resources/img/Pearson-sign-bldg-1200x900.jpg);
+	background-image: url(resources/img/Pearson-sign-bldg-1200x9002.jpg);
 	background-size: cover;
 	-webkit-filter: blur(5px);
 	z-index: 0;
