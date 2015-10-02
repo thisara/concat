@@ -48,7 +48,7 @@ controllersModule.controller('systemTypeInController', function($scope, $http) {
 	}
 });
 
-controllersModule.controller('systemIntegrationController', function($scope) {
+controllersModule.controller('systemIntegrationController', function($scope, $http) {
     $scope.summaryTextShow = false;
     $scope.summaryText = null;
 
