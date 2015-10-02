@@ -6,11 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.concat.model.Summary;
 import com.concat.service.SummaryService;
@@ -72,4 +68,18 @@ public class SummaryAPIController {
 			e.printStackTrace();
 		}
 	}
+
+    @RequestMapping(value = "/concat/text/summary/api", method = RequestMethod.POST)
+    public @ResponseBody Set<String> summarizeTextSecond(@RequestBody String originalText) {
+
+        System.out.println("originalText" + originalText);
+        SummaryUtil s = new SummaryUtil();
+
+        Set<String> summarize = s.summarize(originalText);
+
+        logService(originalText, summarize.toString(), "2");
+        return summarize;
+    }
+
+
 }

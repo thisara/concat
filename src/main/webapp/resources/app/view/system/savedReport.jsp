@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<table>
+<table class="table table-hover">
     <tr>
         <th width="80">ID</th>
         <th width="120">Summary </th>
