@@ -23,7 +23,7 @@ body{
 	height: auto;
 	background-image: url(resources/img/Pearson-sign-bldg-1200x9002.jpg);
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	
 	z-index: 0;
 }
 
@@ -145,7 +145,7 @@ body{
 <div class="body"></div>
 <div class="grad"></div>
 <div class="header">
-    <div>Site<span>Random</span></div>
+    <div>ConCat<span>Sys</span></div>
 </div>
 <br>
 <div class="login">
